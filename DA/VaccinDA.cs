@@ -38,10 +38,10 @@ namespace Vaccinatietool.DA
             string sql = "SELECT * FROM vaccin " +
                 "WHERE vaccinid=@vaccinid";
             MySqlConnection conn = Database.MakeConnection();
-            MySqlCommand getVacs = new MySqlCommand(sql, conn);
-            getVacs.Parameters.AddWithValue("@vaccinid", id);
+            MySqlCommand getVac = new MySqlCommand(sql, conn);
+            getVac.Parameters.AddWithValue("@vaccinid", id);
             //Uitlezen resultaten
-            MySqlDataReader reader = getVacs.ExecuteReader();
+            MySqlDataReader reader = getVac.ExecuteReader();
             while (reader.Read())
             {
                 vac = Create(reader);
@@ -61,10 +61,10 @@ namespace Vaccinatietool.DA
             string sql = "SELECT * FROM vaccin " +
                 "WHERE naam=@naam";
             MySqlConnection conn = Database.MakeConnection();
-            MySqlCommand getVacs = new MySqlCommand(sql, conn);
-            getVacs.Parameters.AddWithValue("@naam", naam);
+            MySqlCommand getVac = new MySqlCommand(sql, conn);
+            getVac.Parameters.AddWithValue("@naam", naam);
             //Uitlezen resultaten
-            MySqlDataReader reader = getVacs.ExecuteReader();
+            MySqlDataReader reader = getVac.ExecuteReader();
             while (reader.Read())
             {
                 vac = Create(reader);

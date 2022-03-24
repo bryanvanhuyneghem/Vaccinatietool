@@ -15,7 +15,7 @@ namespace Vaccinatietool.DA
         public static List<Vaccinator> GetVaccinatoren()
         {
             //Nieuwe lijst maken voor de vaccinaties van een burger
-            List<Vaccinator> vaccinator = new List<Vaccinator>();
+            List<Vaccinator> vaccinators = new List<Vaccinator>();
             //Connectie met database + query
             string sql = "SELECT * FROM vaccinator";
             MySqlConnection conn = Database.MakeConnection();
@@ -24,11 +24,11 @@ namespace Vaccinatietool.DA
             MySqlDataReader reader = getVacs.ExecuteReader();
             while (reader.Read())
             {
-                vaccinator.Add(Create(reader));
+                vaccinators.Add(Create(reader));
             }
             conn.Close();
             reader.Close();
-            return vaccinator;
+            return vaccinators;
         }
         public static Vaccinator GetVaccinator(string voornaam, string familienaam)
         {
@@ -38,11 +38,11 @@ namespace Vaccinatietool.DA
             string sql = "SELECT * FROM vaccinator " +
                 "WHERE voornaam=@voornaam AND familienaam=@familienaam";
             MySqlConnection conn = Database.MakeConnection();
-            MySqlCommand getVacs = new MySqlCommand(sql, conn);
-            getVacs.Parameters.AddWithValue("@voornaam", voornaam);
-            getVacs.Parameters.AddWithValue("@familienaam", familienaam);
+            MySqlCommand getVac = new MySqlCommand(sql, conn);
+            getVac.Parameters.AddWithValue("@voornaam", voornaam);
+            getVac.Parameters.AddWithValue("@familienaam", familienaam);
             //Uitlezen resultaten
-            MySqlDataReader reader = getVacs.ExecuteReader();
+            MySqlDataReader reader = getVac.ExecuteReader();
             while (reader.Read())
             {
                 vaccinator = Create(reader);
@@ -61,10 +61,10 @@ namespace Vaccinatietool.DA
             string sql = "SELECT * FROM vaccinator " +
                 "WHERE vaccinatorid=@vaccinatorid";
             MySqlConnection conn = Database.MakeConnection();
-            MySqlCommand getVacs = new MySqlCommand(sql, conn);
-            getVacs.Parameters.AddWithValue("@vaccinatorid", id);
+            MySqlCommand getVac = new MySqlCommand(sql, conn);
+            getVac.Parameters.AddWithValue("@vaccinatorid", id);
             //Uitlezen resultaten
-            MySqlDataReader reader = getVacs.ExecuteReader();
+            MySqlDataReader reader = getVac.ExecuteReader();
             while (reader.Read())
             {
                 vaccinator = Create(reader);

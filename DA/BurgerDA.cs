@@ -64,15 +64,15 @@ namespace Vaccinatietool.DA
 
         public static void SaveBurger(Burger burger)
         {
-                //Query opstellen + connectie maken
-                string sql = "INSERT INTO burger (voornaam, familienaam)" +
-                    "VALUES (@voornaam, @familienaam)";
-                MySqlConnection conn = Database.MakeConnection();
-                MySqlCommand addVacs = new MySqlCommand(sql, conn);
-                addVacs.Parameters.AddWithValue("@voornaam", burger.Voornaam);
-                addVacs.Parameters.AddWithValue("@familienaam", burger.Familienaam);
-                //Query uitvoeren
-                addVacs.ExecuteNonQuery();
+            //Query opstellen + connectie maken
+            string sql = "INSERT INTO burger (voornaam, familienaam)" +
+                "VALUES (@voornaam, @familienaam)";
+            MySqlConnection conn = Database.MakeConnection();
+            MySqlCommand saveBurger = new MySqlCommand(sql, conn);
+            saveBurger.Parameters.AddWithValue("@voornaam", burger.Voornaam);
+            saveBurger.Parameters.AddWithValue("@familienaam", burger.Familienaam);
+            //Query uitvoeren
+            saveBurger.ExecuteNonQuery();
         }
 
         //Functie om object aan te maken
